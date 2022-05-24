@@ -1,0 +1,153 @@
+# 请保存为UTF-8格式
+
+spring:
+ profiles:
+  active: 
+  - dev
+
+---
+server:
+ port: 8001
+
+spring:
+ # 开发环境
+ profiles: dev
+ application:
+  name: microservicecloud-config-dept-client
+
+ datasource:
+  # 当前数据源操作类型
+  type: com.alibaba.druid.pool.DruidDataSource
+  # mysql驱动包
+  driver-class-name: org.gjt.mm.mysql.Driver
+  # 数据库名称 - 大小写也不敏感！！！
+  url: jdbc:mysql://localhost:3306/cloudDB01
+  # url: jdbc:mysql://localhost:3306/clouddb01
+  username: root
+  password: 123456
+
+  dbcp2:
+    # 数据库连接池的最小维持连接数
+    min-idle: 5
+    # 初始化连接数
+    initial-size: 5
+    # 最大连接数
+    max-total: 5
+    # 等待连接获取的最大超时时间
+    max-wait-millis: 200
+
+mybatis:
+ # mybatis配置文件所在路径
+ config-location: classpath:mybatis/mybatis.cfg.xml
+ # 所有Entity别名类所在包
+ type-aliases-package: com.xpp.springcloud.entity
+ # mapper映射文件
+ # [classpath:mybatis/mapper/**/*.xml] - TODO - yml-prop 插件 对数组的自动转换格式到 [] 是错误的！！！！
+ # mapper-locations=[classpath:mybatis/mapper/**/*.xml]
+ # mapper-locations=[classpath:mybatis/**/*.xml]
+ # mapper-locations=classpath:mappers/push/*.xml, classpath*:/mappers/*.xml
+ mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+eureka:
+ instance:
+  # 自定义服务名称信息
+  instance-id: dept-8001.com
+  # 访问路径可以显示IP地址
+  prefer-ip-address: true
+  # 冒号后面必须要有空格
+  # hostname: eureka8001.com
+ client:
+  # 客户端注册进 eureka 服务列表内
+  # 当前的 eureka-server 自己不注册进服务列表中
+  # register-with-eureka: false
+  # 不通过 eureka 获取注册信息
+  fetch-registry: false
+  service-url:
+   defaultZone: http://eureka7001.com:7001/eureka
+
+info:
+ app:
+  # - 对外暴露的统一的服务实例名
+  name: xpp-microservicecloud
+
+ company:
+  name: www.xpp.com
+
+ build:
+  artifactId: $project.artifactId
+  # artifactId: ${project.artifactId}
+  version: $project.version
+  # version: ${project.version}
+
+---
+server:
+ port: 8001
+
+spring:
+ # 测试环境
+ profiles: test
+ application:
+  name: microservicecloud-config-dept-client
+
+ datasource:
+  # 当前数据源操作类型
+  type: com.alibaba.druid.pool.DruidDataSource
+  # mysql驱动包
+  driver-class-name: org.gjt.mm.mysql.Driver
+  # 数据库名称 - 大小写也不敏感！！！
+  url: jdbc:mysql://localhost:3306/cloudDB02
+  username: root
+  password: 123456
+
+  dbcp2:
+    # 数据库连接池的最小维持连接数
+    min-idle: 5
+    # 初始化连接数
+    initial-size: 5
+    # 最大连接数
+    max-total: 5
+    # 等待连接获取的最大超时时间
+    max-wait-millis: 200
+
+mybatis:
+ # mybatis配置文件所在路径
+ config-location: classpath:mybatis/mybatis.cfg.xml
+ # 所有Entity别名类所在包
+ type-aliases-package: com.xpp.springcloud.entity
+ # mapper映射文件
+ # [classpath:mybatis/mapper/**/*.xml] - TODO - yml-prop 插件 对数组的自动转换格式到 [] 是错误的！！！！
+ # mapper-locations=[classpath:mybatis/mapper/**/*.xml]
+ # mapper-locations=[classpath:mybatis/**/*.xml]
+ # mapper-locations=classpath:mappers/push/*.xml, classpath*:/mappers/*.xml
+ mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+eureka:
+ instance:
+  # 自定义服务名称信息
+  instance-id: dept-8001.com
+  # 访问路径可以显示IP地址
+  prefer-ip-address: true
+  # 冒号后面必须要有空格
+  # hostname: eureka8001.com
+ client:
+  # 客户端注册进 eureka 服务列表内
+  # 当前的 eureka-server 自己不注册进服务列表中
+  # register-with-eureka: false
+  # 不通过 eureka 获取注册信息
+  fetch-registry: false
+  service-url:
+   defaultZone: http://eureka7001.com:7001/eureka
+
+info:
+ app:
+  # - 对外暴露的统一的服务实例名
+  name: xpp-microservicecloud
+
+ company:
+  name: www.xpp.com
+
+ build:
+  artifactId: $project.artifactId
+  # artifactId: ${project.artifactId}
+  version: $project.version
+  # version: ${project.version}
